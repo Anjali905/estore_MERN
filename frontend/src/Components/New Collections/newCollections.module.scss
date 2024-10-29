@@ -1,8 +1,9 @@
-.newCollection{
+.newCollections{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    margin: 20% auto;
    
     .h1{
         color: #171717;
@@ -21,4 +22,5 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 50px;
     gap: 30px;
+    padding: 0 140px;
 }

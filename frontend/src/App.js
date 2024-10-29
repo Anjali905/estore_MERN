@@ -6,6 +6,9 @@ import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
 import Main from './Pages/Main';
+import women_banner from "./Assets/banner_women.png"
+import men_banner from "./Assets/banner_mens.png"
+import kid_banner from "./Assets/banner_kids.png"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,15 +21,15 @@ const router = createBrowserRouter([
       },
       {
         path: "mens",       // Route for Store page
-        element: <ShopCategory category="mens"/>,
+        element: <ShopCategory category="men" banner ={men_banner}/>,
       },
       {
         path: "womens",       // Route for About page
-        element: <ShopCategory category="womens"/>,
+        element: <ShopCategory category="women" banner ={women_banner}/>,
       },
       {
         path: "kids",       // Route for About page
-        element: <ShopCategory category="kids"/>,
+        element: <ShopCategory category="kid" banner ={kid_banner}/>,
       },
       {
         path: "product",       // Route for About page
