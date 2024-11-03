@@ -1,24 +1,78 @@
-.popular{
+.popular {
     display: flex;
     flex-direction: column;
     padding: 0 140px;
     align-items: center;
     gap: 10px;
-   
-    .h1{
+
+    .h1 {
         color: #171717;
         font-size: 50px;
         font-weight: 600;
     }
+
+    hr {
+        width: 200px;
+        height: 6px;
+        border-radius: 10px;
+        background: #252525;
+    }
 }
-.popular hr{
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
-    background: #252525;
-}
-.popularItem{
+
+.popularItem {
     margin-top: 50px;
     display: flex;
     gap: 30px;
+}
+
+/* Responsive styles */
+@media (max-width: 1280px) {
+    .popular {
+        padding: 0 80px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .popular {
+        padding: 0 40px;
+    }
+    .h1 {
+        font-size: 40px; /* Adjust for smaller screens */
+    }
+    .popularItem {
+        gap: 20px; /* Reduce gap */
+    }
+}
+
+@media (max-width: 768px) {
+    .popular {
+        padding: 0 20px;
+    }
+    .h1 {
+        font-size: 35px; /* Adjust for tablets */
+    }
+    .popularItem {
+        flex-direction: column; /* Change to vertical stacking */
+        margin-top: 30px; /* Reduce margin */
+        gap: 15px; /* Narrower gap */
+    }
+    hr {
+        width: 150px; /* Adjust width */
+    }
+}
+
+@media (max-width: 480px) {
+    .popular {
+        padding: 0 10px;
+    }
+    .h1 {
+        font-size: 28px; /* Smaller font size for better readability */
+    }
+    .popularItem {
+        gap: 10px; /* Reduce gap */
+    }
+    hr {
+        width: 120px; /* Adjust width */
+        height: 4px; /* Adjust height */
+    }
 }

@@ -1,42 +1,128 @@
-.shopCategory{
+.shopCategory {
 
 }
-.shopCategoryBanner{
+
+.shopCategoryBanner {
     display: block;
     margin: 30px auto !important;
     width: 82% !important;
 }
-.shopCategoryIndexSort{
-  display: flex;
-  margin: 0px 170px;
-  justify-content: space-between;
-  align-items: center;
-  p span{
-    font-weight: 600;
-  }
+
+/* Responsive styling for .shopCategoryIndexSort */
+.shopCategoryIndexSort {
+    display: flex;
+    margin: 0px 170px;
+    justify-content: space-between;
+    align-items: center;
+
+    p span {
+        font-weight: 600;
+    }
 }
-.shopCategorySort{
-padding: 10px 20px;
-border-radius: 40px;
-border: 1px solid #888;
+
+.shopCategorySort {
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 1px solid #888;
 }
-.shopCategoryProducts{
-  margin: 20px 170px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 80px;
-  column-gap: 20px;
+
+/* Responsive styling for .shopCategoryProducts */
+.shopCategoryProducts {
+    margin: 20px 170px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 80px;
+    column-gap: 20px;
 }
-.shopCategoryLoadMore{
+
+/* Styling for Load More button */
+.shopCategoryLoadMore {
     display: flex;
     align-items: center;
-  justify-content: center;
-  margin: 150px auto;
-  width: 233px;
-  height: 69px;
-    background: #ededed ;
+    justify-content: center;
+    margin: 150px auto;
+    width: 233px;
+    height: 69px;
+    background: #ededed;
     color: #787878;
     font-size: 18px;
     font-weight: 500;
     border-radius: 85px;
+}
+
+/* Responsive styles */
+@media (max-width: 1280px) {
+    .shopCategoryIndexSort {
+        margin: 0px 100px; /* Reduce margin */
+    }
+
+    .shopCategoryProducts {
+        margin: 20px 100px; /* Adjust margin */
+        grid-template-columns: 1fr 1fr 1fr; /* Reduce columns */
+    }
+}
+
+@media (max-width: 1024px) {
+    .shopCategoryBanner {
+        width: 90% !important; /* Adjust width */
+    }
+
+    .shopCategoryIndexSort {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start;
+        gap: 20px; /* Add gap for vertical layout */
+        margin: 0px 50px; /* Reduce margin */
+    }
+
+    .shopCategoryProducts {
+        margin: 20px 50px; /* Reduce margin */
+        grid-template-columns: 1fr 1fr; /* Further reduce columns */
+        row-gap: 60px; /* Adjust row gap */
+    }
+}
+
+@media (max-width: 768px) {
+    .shopCategoryIndexSort {
+        margin: 0px 30px; /* Narrower margin */
+        justify-content: center; /* Center align for smaller screens */
+    }
+
+    .shopCategorySort {
+        padding: 8px 15px; /* Adjust padding */
+    }
+
+    .shopCategoryProducts {
+        margin: 20px 30px; /* Reduce margin */
+        grid-template-columns: 1fr; /* Single column layout */
+        column-gap: 15px; /* Adjust column gap */
+    }
+}
+
+@media (max-width: 480px) {
+    .shopCategoryBanner {
+        width: 100% !important; /* Full width for mobile */
+        margin: 20px auto; /* Reduce margin */
+    }
+
+    .shopCategoryIndexSort {
+        flex-direction: column; /* Ensure vertical stacking */
+        margin: 0px 10px; /* Minimal margin */
+        align-items: center; /* Center align */
+    }
+
+    .shopCategorySort {
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .shopCategoryProducts {
+        margin: 20px 10px; /* Minimal margin */
+        grid-template-columns: 1fr; /* Single column */
+        row-gap: 40px; /* Adjust row gap */
+    }
+
+    .shopCategoryLoadMore {
+        width: 180px; /* Reduce width */
+        height: 55px; /* Adjust height */
+        font-size: 16px; /* Adjust font size */
+    }
 }

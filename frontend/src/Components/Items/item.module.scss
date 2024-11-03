@@ -1,28 +1,93 @@
-.Item{
-   
-    p{
-        margin: 6px 0px;
-      }
-      img{
-        width: 100%;
-      }
+.Item {
+  p {
+      margin: 6px 0px;
+  }
+  
+  img {
+      width: 100%;
+  }
+  
+  &:hover {
+      transform: scale(1.05);
+      transition: 0.6s;
+  }
 }
-.itemPrices{
+
+.itemPrices {
   display: flex;
-    gap:20px;
+  gap: 20px;
 }
-.itemPriceNew{
-    color: #374151;
-    font-size: 18px;
-    font-weight: 600;
+
+.itemPriceNew {
+  color: #374151;
+  font-size: 18px;
+  font-weight: 600;
 }
-.itemPriceOld{
+
+.itemPriceOld {
   color: #8c8c8c;
   font-size: 18px;
   font-weight: 500;
   text-decoration: line-through;
 }
-.Item:hover{
-    transform: scale(1.05);
-    transition: 0.6s;
+
+/* Responsive styles */
+@media (max-width: 1280px) {
+  .itemPriceNew,
+  .itemPriceOld {
+      font-size: 16px; /* Adjust font size */
+  }
+
+  .itemPrices {
+      gap: 15px; /* Reduce gap */
+  }
+}
+
+@media (max-width: 1024px) {
+  .Item {
+      p {
+          margin: 4px 0px; /* Reduce margin */
+      }
+  }
+
+  .itemPriceNew,
+  .itemPriceOld {
+      font-size: 15px; /* Smaller font size */
+  }
+}
+
+@media (max-width: 768px) {
+  .Item {
+      &:hover {
+          transform: scale(1.02); /* Reduce hover effect */
+          transition: 0.5s; /* Adjust transition */
+      }
+  }
+
+  .itemPriceNew,
+  .itemPriceOld {
+      font-size: 14px; /* Further reduce font size */
+  }
+
+  .itemPrices {
+      flex-direction: column; /* Stack prices vertically */
+      gap: 10px; /* Reduce gap */
+  }
+}
+
+@media (max-width: 480px) {
+  .Item {
+      p {
+          margin: 3px 0px; /* Minimal margin */
+      }
+  }
+
+  .itemPriceNew,
+  .itemPriceOld {
+      font-size: 12px; /* Smaller font size */
+  }
+
+  .itemPrices {
+      gap: 5px; /* Minimal gap */
+  }
 }

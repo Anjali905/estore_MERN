@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <Product/>,
         children: [{
           path: ":productId",         // This makes Home the default child route
-          element: <Shop />,
+          element: <Product />,
         }
         ]
       },

@@ -1,0 +1,207 @@
+.cartItems {
+    margin: 100px 170px;
+
+    hr {
+        height: 3px;
+        background: #e2e2e2;
+        border: 0;
+    }
+
+    .cartItemsFormatMain {
+        display: grid;
+        grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+        gap: 70px;
+        padding: 20px 0;
+        color: #454545;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+/* Icon Styling */
+.removeIcon {
+    margin: 0 40px;
+    width: 15px;
+    cursor: pointer;
+}
+
+.cartItemsFormat {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.cartIconProductIcon {
+    height: 62px;
+}
+
+.cartItemsQuantity {
+    width: 64px;
+    height: 50px;
+    border: 2px solid #ebebeb;
+    background: #fff;
+}
+
+.cartItemsDown {
+    display: flex;
+    margin: 100px 0;
+}
+
+/* Cart Total Section */
+.cartItemsTotal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+    gap: 40px;
+
+    button {
+        width: 262px;
+        height: 58px;
+        outline: none;
+        border: none;
+        background: #ff5a5a;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}
+
+.cartItemsTotalItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+/* Promo Code Section */
+.cartItemsPromoCode {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+
+    p {
+        color: #555;
+    }
+}
+
+.promoBox {
+    width: 504px;
+    margin-top: 15px;
+    padding-left: 20px;
+    height: 58px;
+    background: #eaeaea;
+
+    input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        width: 330px;
+        height: 50px;
+    }
+
+    button {
+        width: 170px;
+        height: 58px;
+        font-size: 16px;
+        background: black;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .cartItems {
+        margin: 50px 50px; /* Reduce margin */
+    }
+
+    .cartItemsFormatMain {
+        grid-template-columns: 1fr 1fr; /* Simplify layout */
+        gap: 30px; /* Reduce gap */
+        font-size: 16px; /* Reduce font size */
+    }
+
+    .cartItemsTotal {
+        margin-right: 100px; /* Adjust margin */
+        button {
+            width: 220px; /* Reduce button width */
+            height: 50px; /* Reduce button height */
+        }
+    }
+
+    .promoBox {
+        width: 100%; /* Full width */
+        input {
+            width: calc(100% - 170px); /* Adjust input width */
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .cartItems {
+        margin: 30px 20px; /* Narrow margin */
+    }
+
+    .cartItemsFormatMain {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 20px;
+        font-size: 15px; /* Adjust font size */
+    }
+
+    .cartItemsTotal {
+        button {
+            width: 100%; /* Full width */
+            height: 48px; /* Adjust button height */
+            font-size: 14px; /* Adjust font size */
+        }
+    }
+
+    .promoBox {
+        padding-left: 15px; /* Adjust padding */
+        button {
+            width: 150px; /* Adjust button width */
+            height: 48px; /* Adjust button height */
+            font-size: 14px; /* Adjust button font size */
+        }
+
+        input {
+            font-size: 14px; /* Adjust input font size */
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .cartItems {
+        margin: 20px 10px; /* Minimal margin */
+    }
+
+    .cartItemsFormatMain {
+        grid-template-columns: 1fr; /* Full width for items */
+        gap: 10px; /* Minimal gap */
+        font-size: 14px; /* Smaller font */
+    }
+
+    .cartItemsTotal {
+        button {
+            width: 100%; /* Full width */
+            height: 42px; /* Adjust button height */
+            font-size: 12px; /* Adjust font size */
+        }
+    }
+
+    .promoBox {
+        padding-left: 10px; /* Minimal padding */
+        button {
+            width: 130px; /* Smaller button */
+            height: 42px; /* Adjust height */
+            font-size: 12px; /* Smaller font */
+        }
+
+        input {
+            width: calc(100% - 130px); /* Adjust input width */
+            font-size: 12px; /* Smaller font */
+        }
+    }
+}

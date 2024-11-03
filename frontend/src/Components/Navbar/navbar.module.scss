@@ -3,6 +3,7 @@
     justify-content:space-around;
     padding: 16px;
     box-shadow: 0 1px 3px -2px black;
+    align-items: center;
 }
 .navLogo{
     display: flex;
@@ -69,4 +70,103 @@
   font-size: 14px;
   background: red;
   color: white;
+}
+.navDropdown{
+    display: none;
+}
+@media(max-width: 1280px){
+    .Navbar{
+        padding:12px 50px;
+    }
+    .navLog {
+        img{
+            width: 40px;
+        }
+       p{
+        font-size: 25px;
+       }
+    }
+    .navmenu{
+        gap: 30px;
+        font-size: 16px;
+    }
+    .navLoginCart{
+        gap: 30px;
+        button{
+            width: 120px;
+            height: 45px;
+            font-size: 16px;
+        }
+    }
+    .cartCountNav{
+        margin-left: -40px;
+        font-size: 12px;
+    }
+}
+@media(max-width:1024px){
+    .Navbar{
+        padding:12px 30px;
+    }
+   
+    .navmenu{
+        gap: 25px;
+        font-size: 16px;
+    }
+    .navLoginCart{
+        button{
+            width: 80px;
+            height: 35px;
+            font-size: 14px;
+        }
+        img{
+           width: 30px;
+
+        }
+    }
+    .cartCountNav{
+       width: 18px;
+       height: 18px;
+    }
+}
+@media(max-width: 800px){
+    .Navbar{
+        padding: 10px 0px;
+    }
+    .navDropdown{
+    display: block;
+    width: 30px;
+    rotate: -90deg;
+    transition: 0.5s;
+    .open{
+       transform: rotate(90deg) ;
+    }
+    }
+    .navmenu{
+        display: none;
+        height: 80px;
+        width: 100%;
+        position: absolute;
+        background-color: white;
+        justify-content: center;
+        top: 55px;
+    }
+    .navMenuVisible{
+        display: flex;
+    }
+}
+@media(max-width:500px){
+    .Navbar{
+        width: 8px 0px;
+        gap: 0;
+    }
+    .navLogo{
+        transform: scale(0.8);
+    }
+    .navmenu{
+        height: 70px;
+        top: 50px;
+    }
+    .navLoginCart{
+        transform: scale(0.8);
+    }
 }
