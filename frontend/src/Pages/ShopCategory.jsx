@@ -4,7 +4,6 @@ import { ShopContext } from '../Context/ShopContext'
 import Item from '../Components/Items/Item';
 const ShopCategory = (props) => {
   const {all_product} = useContext(ShopContext);
-  console.log(all_product,"in shop ctageory");
   return (
     <div className={styles.shopCategory}>
       <img className={styles.shopCategoryBanner} src={props.banner} alt="" />
@@ -17,7 +16,6 @@ const ShopCategory = (props) => {
       </div>
       <div className={styles.shopCategoryProducts}>
         {all_product.map((item, index)=>{
-          console.log("category name comparison", props.category, item.category);
              if(props.category === item.category){
               return  <Item key={index} id = {item.id} name={item.name} image= {item.image} new_price={item.new_price} old_price={item.old_price}/>
              }else{

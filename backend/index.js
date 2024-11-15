@@ -105,9 +105,7 @@ app.post('/addproduct', async (req, res) => {
             new_price: req.body.new_price,
             old_price: req.body.old_price
         });
-        console.log(product);
         await product.save();
-        console.log("Product savedd");
         res.json({
             success: true,
             name: req.body.name
@@ -120,7 +118,6 @@ app.post('/addproduct', async (req, res) => {
 //creating API for deleting products
 app.post('/removeproduct',async(req,resp)=>{
     await Product.findOneAndDelete({id:req.body.id});
-    console.log("removed");
     resp.json({
         success:true,
         name:req.body.name
@@ -129,8 +126,128 @@ app.post('/removeproduct',async(req,resp)=>{
 //Creating API for getting all products
 app.get('/allproducts',async(req,res)=>{
     let products = await Product.find({});
-    console.log("All products fetched");
     res.send(products);
+})
+//Schema creating for user model
+const User = mongoose.model('Users',{
+    name:{
+        type:String,
+        required:true,
+    },
+    email:{ 
+        type:String,
+        unique:true,
+    },
+    password:{   
+      type:String,
+    },
+    cartData:{
+        type:Object
+    },
+    date:{
+        type:Date,
+        default:Date.now,
+    }
+    })
+    //creating API for adding user
+    app.post('/signup',async(req,resp)=>{
+      let check = await User.findOne({email:req.body.email});
+      if(check){
+        return resp.status(400).json({
+            success:false,
+            errors:"User already exists"
+        })
+      }
+      let cart = {};
+      for(let index = 0; index <= 300+ 1;index++){
+        cart[index]= 0;
+      }
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        cartData: cart
+      });
+      await user.save();
+      const data = {
+        user:{
+            id:user.id
+        }
+      }
+      const token = jwt.sign(data,'secret_ecom');
+      resp.json({success:true,token})
+
+      })
+      
+   //creating end point for user login
+   app.post('/login',async(req,resp)=>{
+    let user = await User.findOne({email:req.body.email});
+    if(user){
+        const passCompare = await req.body.password === user.password; 
+        if(passCompare){
+            const data = {
+                user:{
+                    id:user.id
+                }
+              
+            }
+            const token = jwt.sign(data,'secret_ecom');
+            resp.json({success:true,token});
+        }else{
+            resp.json({success:false,error:"Wrong Password"});
+        }
+    }else{
+        resp.json({success:false,error:"User not found"});
+    }
+   })
+   //creating end point for new collection
+   app.get("/newcollection",async(req,resp)=>{
+    let products = await Product.find({});
+    let newCollection = products.slice(1).slice(-8);
+    resp.send(newCollection);
+   })
+   //creating end point for popular in women section
+   app.get("/popularwomen",async(req,resp)=>{
+    let products = await Product.find({category:"women"});
+    let popular_in_women = products.slice(0,4);
+     resp.send(popular_in_women);
+   })
+   //creating middleware to fetch user data
+   const fetchUser = async(req,resp,next)=>{
+       const token = req.header('auth-token');
+       if(!token){
+           resp.status(401).send({error:"Please authenticate using a valid token"});
+       }else{
+        try{
+            const data = jwt.verify(token,'secret_ecom');
+            req.user = data.user;
+            next();
+        }catch(error){
+            resp.status(401).send({error:"Please authenticate using a valid token"});
+        }
+       }
+   }
+   //creating end point for adding products to cart
+   app.post('/addtocart',fetchUser,async(req,resp)=>{
+     let userData = await User.findOne({_id:req.user.id});
+     userData.cartData[req.body.id] += 1;
+     await User.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
+     resp.send("Added to cart successfully");
+    })
+//creating end point to remove product from cart data
+app.post('/removefromcart',fetchUser,async(req,resp)=>{
+    let userData = await User.findOne({_id:req.user.id});
+    if(userData.cartData[req.body.id] >= 0){
+        userData.cartData[req.body.id] -= 1;
+        await User.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
+        resp.send("Removed from cart successfully"); 
+    }
+     
+})
+//creating end point to create cart data
+app.post('/getcart',fetchUser,async(req,resp)=>{
+    let userData = await User.findOne({_id:req.user.id});
+    resp.json(userData.cartData);
 })
 app.listen(port,(error)=>{
     if(!error){

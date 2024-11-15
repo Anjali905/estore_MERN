@@ -9,10 +9,6 @@ const Product = () => {
   const {all_product} = useContext(ShopContext)
   const {productId} = useParams();
   const product = all_product.find((e)=>e.id === Number(productId));
-  useEffect(()=>{
-    console.log(product, productId);
-      
-  })
   return (
     <div>
       <Breadcrumb product={product}/>

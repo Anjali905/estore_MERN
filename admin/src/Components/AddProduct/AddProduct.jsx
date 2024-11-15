@@ -12,10 +12,24 @@ const AddProduct = () => {
     })
      // Check if productDetails.image is updated
      useEffect(() => {
-        console.log("Updated productDetails:", productDetails);
+       
+        if(productDetails.image){
+             fetch('http://localhost:4000/addProduct', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productDetails),
+            }).then((response) => response.json()).then((data)=>{
+                setProductDetails({});
+                data.success?alert("Product added successfully"):alert("Failed to add product")
+            })
+           
+           
+        }
     }, [productDetails]); // This will log whenever productDetails changes
     const imageHandler = (e)=>{
-        console.log(e.target.files[0]);
      setImage(e.target.files[0]);
     }
     const changeHandler = (e)=>{
@@ -26,7 +40,6 @@ const AddProduct = () => {
         try {
             // Check if the image is a valid File object
             if (!image || !(image instanceof File)) {
-                console.log("No valid image selected");
                 throw new Error('No valid image selected');
             }
     
@@ -36,7 +49,7 @@ const AddProduct = () => {
     
             // Debugging: Log FormData contents
             for (const [key, value] of formData.entries()) {
-                console.log(`${key}:`, value);
+               
             }
     
             // Send only the image to the upload endpoint
@@ -49,15 +62,13 @@ const AddProduct = () => {
             });
     
             if (!response.ok) {
-                console.log("Failed to upload image");
                 throw new Error('Failed to upload image');
             }
     
             const data = await response.json();
-             console.log("data from response", data);
+         
             // Check if the upload was successful
             if (!data.success) {
-                console.log("Failed to upload image in response data");
                 throw new Error('Failed to upload image');
             }
     
@@ -67,7 +78,7 @@ const AddProduct = () => {
                 image: data.image_url // `data.image_url` is the URL returned from the server
             }));
     
-            console.log('Product details updated with image URL:', productDetails);
+           
     
         } catch (error) {
             console.error('Error uploading image:', error);
