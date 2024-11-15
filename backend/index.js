@@ -1,5 +1,8 @@
-//Define port 
-const port = 4000;
+require("dotenv").config();
+
+// Define port and MongoDB URI from environment variables
+const port = process.env.PORT || 4000;
+const mongoURI = process.env.MONGODB_URI;
 //import depedency
 const express = require("express");
 //create app instance
@@ -16,9 +19,9 @@ app.use(express.json());
 
 
 // Database connection with MongoDB
-mongoose.connect("mongodb+srv://anjaliajithkumar22:60ihIUyJ098pmlrH@cluster0.trx2n.mongodb.net/e-commerce?retryWrites=true&w=majority")
+mongoose.connect(mongoURI)
     .then(() => {
-        console.log('Connected to MongoDBd');
+        console.log('Connected to MongoDB');
     })
     .catch(err => {
         console.error('Error connecting to MongoDB:', err);
@@ -174,7 +177,7 @@ const User = mongoose.model('Users',{
             id:user.id
         }
       }
-      const token = jwt.sign(data,'secret_ecom');
+      const token = jwt.sign(data,process.env.JWT_SECRET);
       resp.json({success:true,token})
 
       })
@@ -191,7 +194,7 @@ const User = mongoose.model('Users',{
                 }
               
             }
-            const token = jwt.sign(data,'secret_ecom');
+            const token = jwt.sign(data,process.env.JWT_SECRET);
             resp.json({success:true,token});
         }else{
             resp.json({success:false,error:"Wrong Password"});
@@ -219,7 +222,7 @@ const User = mongoose.model('Users',{
            resp.status(401).send({error:"Please authenticate using a valid token"});
        }else{
         try{
-            const data = jwt.verify(token,'secret_ecom');
+            const data = jwt.verify(token,process.env.JWT_SECRET);
             req.user = data.user;
             next();
         }catch(error){
